@@ -1,0 +1,39 @@
+.container {
+    height: 50px;
+    position: fixed;
+    display: flex;
+    width: 100%;
+    top: 0;
+    left: 0;
+    color: #fff;
+    opacity: 80%;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 5s ease infinite;
+}
+.container > * {
+    cursor: pointer;
+}
+.brand {
+    display: inline-block;
+    margin: 13px 0 0 15px;
+    font-size: 1.3em;
+}
+.link {
+  display: inline-block;
+  margin: 13px 0 0 15px;
+  font-size: 1.2em;
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}

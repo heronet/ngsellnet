@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="sidebar">
+        <p>FF</p>
+    </div>
+    <div class="item-list">
+        <form class="search">
+            <input type="text" name="name" id="name" ngModel>
+            <button>Search</button>
+        </form>
+        <div class="item" *ngFor="let product of products">
+            <img [src]="product.photos[0].imageUrl" [alt]="product.photos[0].publicId">
+            <div class="item-data">
+                <p>{{product.name}}</p>
+                <p>{{product.price}} TAKA</p>
+                <p>Seller: {{product.supplier}}</p>
+            </div>
+        </div>
+    </div>
+</div>
