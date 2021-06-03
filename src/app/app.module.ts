@@ -9,7 +9,9 @@ import { BackgroundComponent } from './ui/background/background.component';
 import { CoreComponent } from './core/core.component';
 import { ToolbarComponent } from './core/toolbar/toolbar.component';
 import { LoginComponent } from './auth/login/login.component';
-import { ProductsDashboardComponent } from './core/products-dashboard/products-dashboard.component';
+import { ProductsDashboardComponent } from './core/products/products-dashboard/products-dashboard.component';
+import { ProductsQueryComponent } from './core/products/products-query/products-query.component';
+import { SidenavComponent } from './ui/sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { ProductsDashboardComponent } from './core/products-dashboard/products-d
     CoreComponent,
     ToolbarComponent,
     LoginComponent,
-    ProductsDashboardComponent
+    ProductsDashboardComponent,
+    ProductsQueryComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,

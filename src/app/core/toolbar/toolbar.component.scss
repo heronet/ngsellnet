@@ -7,22 +7,26 @@
     left: 0;
     color: #fff;
     opacity: 80%;
+    user-select: none;
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
     animation: gradient 5s ease infinite;
-}
-.container > * {
-    cursor: pointer;
+    z-index: 999;
 }
 .brand {
-    display: inline-block;
     margin: 13px 0 0 15px;
     font-size: 1.3em;
+    cursor: pointer;
+    text-decoration: underline;
 }
 .link {
-  display: inline-block;
-  margin: 13px 0 0 15px;
+  margin: 13px 10px;
   font-size: 1.2em;
+  cursor: pointer;
+}
+a.disabled {
+  pointer-events: none;
+  cursor: default;
 }
 @keyframes gradient {
   0% {

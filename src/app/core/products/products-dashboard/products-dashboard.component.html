@@ -1,6 +1,6 @@
 <div class="container">
     <div class="sidebar">
-        <p>FF</p>
+        <app-products-query></app-products-query>
     </div>
     <div class="item-list">
         <form class="search">
@@ -10,7 +10,7 @@
         <div class="item" *ngFor="let product of products">
             <img [src]="product.photos[0].imageUrl" [alt]="product.photos[0].publicId">
             <div class="item-data">
-                <p>{{product.name}}</p>
+                <p class="product-title">{{product.name}}</p>
                 <p>{{product.price}} TAKA</p>
                 <p>Seller: {{product.supplier}}</p>
             </div>

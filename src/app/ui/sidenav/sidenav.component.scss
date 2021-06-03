@@ -1,0 +1,21 @@
+.container {
+    position: fixed;
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+    top: 50px;
+    left: 0;
+    z-index: 99;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(43, 41, 41, 0.575);
+}
+.content {
+    background-color: hsla(0, 0%, 50%, 0.459);
+    transition: transform 500ms ease;
+    transform: translateX(-100%);
+    min-width: 200px;
+    height: 100%;
+}
+.content-animate {
+    transform: translateX(0%);
+}

@@ -34,12 +34,44 @@
 .item > img {
     height: 100%;
     width: 100%;
+    min-width: 150px;
     border-radius: 10px;
 }
 .item-data {
     border-radius: 10px;
     background-color: rgba(90, 88, 88, 0.3);
     padding: 0 10px;
+}
+.product-title {
+  font-size: 1.2rem;
+}
+@media only screen and (max-width: 600px) {
+    .container {
+      grid-template-columns: 1fr;
+      grid-gap: 10px;
+      width: 90vw;
+      height: 85vh;
+      margin: 0 auto;
+      position: relative;
+      top: 3vw;
+    }
+  .container>.sidebar {
+    display: none;
+  }
+  .item>img {
+    height: 100%;
+    width: 100%;
+    min-width: 100px;
+    min-height: 100px;
+    border-radius: 10px;
+  }
+  .item-data {
+      padding-top: 10px;
+  }
+  .item-data>p {
+      margin: 5px;
+  }
+  
 }
 ::-webkit-scrollbar {
   width: 0px;
