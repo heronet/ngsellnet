@@ -6,7 +6,7 @@ $text-color: #afafaf;
 .form {
     color: $text-color;
     max-width: 600px;
-    min-width: 200px;
+    min-width: 400px;
     margin: 0 auto;
 }
 .field {
@@ -104,6 +104,12 @@ $text-color: #afafaf;
   font-size: 0.8rem;
   right: 0.25rem;
   bottom: 0.5rem;
+}
+@media only screen and (max-width: 600px) {
+  .form {
+    min-width: 200px;
+  }
+
 }
 @keyframes gradient {
   0% {
