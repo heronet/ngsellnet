@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/Product';
+import { SearchFilter } from 'src/app/models/SearchFilter';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -7,21 +9,47 @@ import { ProductsService } from 'src/app/services/products.service';
   templateUrl: './products-dashboard.component.html',
   styleUrls: ['./products-dashboard.component.scss']
 })
-export class ProductsDashboardComponent implements OnInit {
+export class ProductsDashboardComponent implements OnInit, OnDestroy {
   // UI
   isloading = false;
   errorMessage: string = null;
+  pageSize = 5;
+  pageNumber = 1;
+  totalItems = 0;
   // Logic
   products: Product[] = [];
-  totalItems = 0;
+  searchParam = "";
+  filter: SearchFilter = {
+    pageNumber: this.pageNumber,
+    pageSize: this.pageSize,
+    sortParam: null,
+    name: null,
+    city: null,
+    category: null,
+    division: null
+  };
+  private filterSub: Subscription;
+
   constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {
     this.getProducts();
+    console.log(this.filter);
+    
+    this.filterSub = this.productsService.filterUpdated$.subscribe(filter => {
+      this.filter.category = filter.category;
+      this.filter.city = filter.city;
+      this.filter.division = filter.division;
+      this.filter.sortParam = filter.sortParam;
+      this.filter.name = this.searchParam.trim();
+      this.getProducts();
+    })
   }
   getProducts() {
     this.isloading  = true;
-    this.productsService.getProducts().subscribe((response) => {
+    this.productsService.getProducts(this.filter).subscribe((response) => {
+      console.log(response);
+      
       this.products = response.data;
       this.totalItems = response.size;
       this.isloading = false;
@@ -30,6 +58,13 @@ export class ProductsDashboardComponent implements OnInit {
       this.isloading = false;
       this.errorMessage = "An error occured";
     });
+  }
+  onSearch() {
+    this.filter.name = this.searchParam;
+    this.getProducts();
+  }
+  ngOnDestroy() {
+    this.filterSub.unsubscribe();
   }
 
 }

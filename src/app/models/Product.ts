@@ -14,6 +14,8 @@ export interface Product {
   categoryId: string;
   buyersCount: number;
   createdAt: Date;
+  city: string;
+  division: string;
   price: number;
   photos: Photo[];
 }

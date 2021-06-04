@@ -3,9 +3,9 @@
         <app-products-query></app-products-query>
     </div>
     <div class="item-list">
-        <form class="search" *ngIf="products.length > 0">
-            <input type="text" name="name" id="name" ngModel>
-            <button>Search</button>
+        <form class="search" *ngIf="products.length > 0" (ngSubmit)="onSearch()">
+            <input type="text" name="name" id="name" [(ngModel)]="searchParam" placeholder="What are you looking for?">
+            <button type="submit">Search</button>
         </form>
         <ng-container *ngIf="products.length > 0">
             <div class="item" *ngFor="let product of products">
@@ -13,7 +13,8 @@
                 <div class="item-data">
                     <p class="product-title">{{product.name}}</p>
                     <p>{{product.price}} TAKA</p>
-                    <p>Seller: {{product.supplier}}</p>
+                    <p>{{product.city}}, {{product.division}}</p>
+                    <p>{{product.createdAt | date: 'medium'}}</p>
                 </div>
             </div>
         </ng-container>

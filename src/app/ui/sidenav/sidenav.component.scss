@@ -15,6 +15,7 @@
     transform: translateX(-100%);
     min-width: 200px;
     height: 100%;
+    z-index: 999;
 }
 .content-animate {
     transform: translateX(0%);

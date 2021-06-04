@@ -1,6 +1,6 @@
 <div [class]="showSidebar? 'container' : ''" >
-    <div class="content" [class]="showSidebar ? 'content-animate' : ''">
-        
+    <div class="content" [class]="showSidebar ? 'content-animate' : ''"  [style]="showSidebar ? '': 'position: fixed'">
+        <app-products-query></app-products-query>
     </div>
     <div (click)="onHideMe()">
        
