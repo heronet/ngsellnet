@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SearchFilter } from 'src/app/models/SearchFilter';
 import { ProductsService } from 'src/app/services/products.service';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-products-query',
@@ -45,7 +46,7 @@ export class ProductsQueryComponent implements OnInit {
     "Dhaka",
     "Chittagong"
   ]
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService, private uiService: UiService) { }
 
   ngOnInit(): void {
   }
@@ -58,6 +59,7 @@ export class ProductsQueryComponent implements OnInit {
       name: null
     }
     this.productsService.updateFilter(searchFilter);
+    this.uiService.setSidenavVisibility(false);
   }
 
 }

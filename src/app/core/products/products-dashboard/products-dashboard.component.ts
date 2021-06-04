@@ -13,7 +13,7 @@ export class ProductsDashboardComponent implements OnInit, OnDestroy {
   // UI
   isloading = false;
   errorMessage: string = null;
-  pageSize = 5;
+  pageSize = 10;
   pageNumber = 1;
   totalItems = 0;
   // Logic
@@ -34,8 +34,6 @@ export class ProductsDashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getProducts();
-    console.log(this.filter);
-    
     this.filterSub = this.productsService.filterUpdated$.subscribe(filter => {
       this.filter.category = filter.category;
       this.filter.city = filter.city;
@@ -47,9 +45,8 @@ export class ProductsDashboardComponent implements OnInit, OnDestroy {
   }
   getProducts() {
     this.isloading  = true;
-    this.productsService.getProducts(this.filter).subscribe((response) => {
-      console.log(response);
-      
+    setTimeout(() => {
+      this.productsService.getProducts(this.filter).subscribe((response) => {
       this.products = response.data;
       this.totalItems = response.size;
       this.isloading = false;
@@ -58,9 +55,22 @@ export class ProductsDashboardComponent implements OnInit, OnDestroy {
       this.isloading = false;
       this.errorMessage = "An error occured";
     });
+    }, 1000) 
   }
   onSearch() {
     this.filter.name = this.searchParam;
+    this.getProducts();
+  }
+  onChangePage(dir: string) {
+    if(dir === "next") {
+      if(this.totalItems >= this.pageSize * this.pageNumber)
+        ++this.pageNumber;
+    }
+    if(dir === "prev") {
+      if(this.pageNumber > 1)
+        --this.pageNumber;
+    }
+    this.filter.pageNumber = this.pageNumber;
     this.getProducts();
   }
   ngOnDestroy() {

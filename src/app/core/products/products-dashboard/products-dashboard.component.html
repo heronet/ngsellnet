@@ -3,11 +3,11 @@
         <app-products-query></app-products-query>
     </div>
     <div class="item-list">
-        <form class="search" *ngIf="products.length > 0" (ngSubmit)="onSearch()">
+        <form class="search" (ngSubmit)="onSearch()">
             <input type="text" name="name" id="name" [(ngModel)]="searchParam" placeholder="What are you looking for?">
             <button type="submit">Search</button>
         </form>
-        <ng-container *ngIf="products.length > 0">
+        <ng-container *ngIf="products.length > 0 && !isloading">
             <div class="item" *ngFor="let product of products">
                 <img [src]="product.photos[0].imageUrl" [alt]="product.photos[0].publicId">
                 <div class="item-data">
@@ -19,5 +19,10 @@
             </div>
         </ng-container>
         <p *ngIf="isloading" class="loading">Loading...</p>
+    </div>
+    <div class="bottom-bar">
+        <span>Items {{products.length > 0 ? (pageNumber -1) * pageSize + 1 : 0}} to {{(pageSize * pageNumber) > totalItems ? totalItems : (pageSize * pageNumber)}} of {{totalItems}}</span>
+        <button (click)="onChangePage('prev')" [disabled]="pageNumber == 1">Previous</button>
+        <button (click)="onChangePage('next')" [disabled]="totalItems <= pageSize * pageNumber">Next</button>
     </div>
 </div>

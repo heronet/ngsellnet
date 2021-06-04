@@ -10,13 +10,25 @@
     background-color: rgba(43, 41, 41, 0.575);
 }
 .content {
+    display: flex;
+    flex-direction: column;
     background-color: hsla(0, 0%, 50%, 0.459);
     transition: transform 500ms ease;
     transform: translateX(-100%);
     min-width: 200px;
+    width: 250px;
     height: 100%;
     z-index: 999;
 }
 .content-animate {
     transform: translateX(0%);
+}
+.link {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 5s ease infinite;
+    margin: 5px 5px 0 5px;
+    padding: 5px;
+    text-align: center;
+    font-size: 1.3rem;
 }

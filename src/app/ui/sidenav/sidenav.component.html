@@ -1,6 +1,8 @@
 <div [class]="showSidebar? 'container' : ''" >
     <div class="content" [class]="showSidebar ? 'content-animate' : ''"  [style]="showSidebar ? '': 'position: fixed'">
-        <app-products-query></app-products-query>
+        <a class="link" routerLink="/login" >Login</a>
+        <a class="link" routerLink="/" >Signup</a>
+        <app-products-query *ngIf="showFilter"></app-products-query>
     </div>
     <div (click)="onHideMe()">
        
