@@ -19,6 +19,7 @@
             </div>
         </ng-container>
         <p *ngIf="isloading" class="loading">Loading...</p>
+        <p *ngIf="products.length === 0 && !isloading" class="loading">Oops... Looks like there are no products</p>
     </div>
     <div class="bottom-bar">
         <span>Items {{products.length > 0 ? (pageNumber -1) * pageSize + 1 : 0}} to {{(pageSize * pageNumber) > totalItems ? totalItems : (pageSize * pageNumber)}} of {{totalItems}}</span>

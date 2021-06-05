@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { BackgroundComponent } from './ui/background/background.component';
 import { CoreComponent } from './core/core.component';
 import { ToolbarComponent } from './core/toolbar/toolbar.component';
-import { JoinComponent } from './auth/login/join.component';
+import { JoinComponent } from './auth/join/join.component';
 import { ProductsDashboardComponent } from './core/products/products-dashboard/products-dashboard.component';
 import { ProductsQueryComponent } from './core/products/products-query/products-query.component';
 import { SidenavComponent } from './ui/sidenav/sidenav.component';
