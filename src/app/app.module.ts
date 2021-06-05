@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -8,10 +8,11 @@ import { AppComponent } from './app.component';
 import { BackgroundComponent } from './ui/background/background.component';
 import { CoreComponent } from './core/core.component';
 import { ToolbarComponent } from './core/toolbar/toolbar.component';
-import { LoginComponent } from './auth/login/login.component';
+import { JoinComponent } from './auth/login/join.component';
 import { ProductsDashboardComponent } from './core/products/products-dashboard/products-dashboard.component';
 import { ProductsQueryComponent } from './core/products/products-query/products-query.component';
 import { SidenavComponent } from './ui/sidenav/sidenav.component';
+import { TokenInterceptor } from './utils/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -19,10 +20,10 @@ import { SidenavComponent } from './ui/sidenav/sidenav.component';
     BackgroundComponent,
     CoreComponent,
     ToolbarComponent,
-    LoginComponent,
+    JoinComponent,
     ProductsDashboardComponent,
     ProductsQueryComponent,
-    SidenavComponent
+    SidenavComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +31,7 @@ import { SidenavComponent } from './ui/sidenav/sidenav.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

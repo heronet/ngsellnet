@@ -1,0 +1,54 @@
+<div class="container">
+    <form class="form" #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <div class="field" *ngIf="pageMode === 'register'">
+            <input ngModel type="text" name="name" id="name" class="input" autocomplete="off" placeholder=" " required>
+            <label for="name" class="label">Name</label>
+        </div>
+        <div class="field">
+            <input ngModel type="email" name="email" id="email" class="input" autocomplete="off" placeholder=" " required>
+            <label for="email" class="label">Email</label>
+        </div>
+        <div class="field" *ngIf="pageMode === 'register'">
+            <input ngModel type="number" name="phone" id="phone" class="input" minlength="11" maxlength="11" autocomplete="off" placeholder=" " required>
+            <label for="phone" class="label">Phone</label>
+        </div>
+        <div class="field">
+            <input 
+                [(ngModel)]="password" 
+                (ngModelChange)="onPassInput($event)" 
+                [type]="showPassword ? 'text' : 'password'"
+                name="password" id="password" class="input" placeholder=" " required>
+            <label for="password" class="label">Password</label>
+            <span class="toggle-password" 
+                (mouseover)="showPassword = true"
+                (mouseout)="showPassword = false">{{showPassword ? '🙈' : '👁️'}}</span>
+        </div>
+        <div  *ngIf="pageMode === 'register'">
+            <select name="city" id="city" ngModel required>
+                <option value="" disabled selected>City</option>
+                <option [value]="city" *ngFor="let city of cities" class="select-item">{{city}}</option>
+            </select>
+        </div>
+        <div  *ngIf="pageMode === 'register'">
+            <select name="division" id="division" ngModel required>
+                <option value="" disabled selected class="select-item">Division</option>
+                <option [value]="division" *ngFor="let division of divisions" class="select-item">{{division}}</option>
+            </select>
+        </div>
+        <div class="strength">
+            <span class="bar bar-1" [ngClass]="pStrength > 0 ? 'bar-show': ''"></span>
+            <span class="bar bar-2" [ngClass]="pStrength > 1 ? 'bar-show': ''"></span>
+            <span class="bar bar-3" [ngClass]="pStrength > 2 ? 'bar-show': ''"></span>
+        </div>
+        <button type="submit" [disabled]="pStrength <= 2 || isLoading || form.invalid">{{isLoading ? 'Please Wait...': (pageMode === 'login' ? 'Login': 'Register')}}</button>
+        <p *ngIf="serverError" class="error-text">{{serverError}}</p>
+        <div *ngIf="serverErrors" class="error-text">
+            <p *ngFor="let error of serverErrors">{{error.description}}</p>
+        </div>
+        <ul>
+            <li> {{pValidations[0] ? '✔' : '❌'}} Password must be at least 5 characters</li>
+            <li> {{pValidations[1] ? '✔️' : '❌'}} Password must contain a capital letter</li>
+            <li> {{pValidations[2] ? '✔️' : '❌'}} Password must contain a number</li>
+        </ul>
+    </form>
+</div>

@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { SearchFilter } from 'src/app/models/SearchFilter';
 import { ProductsService } from 'src/app/services/products.service';
 import { UiService } from 'src/app/services/ui.service';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-products-query',
@@ -27,28 +28,16 @@ export class ProductsQueryComponent implements OnInit {
     "Date: Old to New",
     "Date: New to Old"
   ];
-  divisions = [
-    "Any",
-    "Dhaka",
-    "Rajshahi",
-    "Sylhet",
-    "Chittagong",
-    "Barishal",
-    "Khulna",
-    "Rangpur",
-    "Mymensingh"
-  ];
-  cities = [
-    "Any",
-    "Naogaon",
-    "Bogra",
-    "Rajshahi",
-    "Dhaka",
-    "Chittagong"
-  ]
-  constructor(private productsService: ProductsService, private uiService: UiService) { }
+  cities = [];
+  divisions = [];
+
+  constructor(private productsService: ProductsService, private uiService: UiService, private utilService: UtilService) { }
 
   ngOnInit(): void {
+    this.utilService.getCitiesAndDivisions().subscribe(res => {
+      this.cities = res.cities;
+      this.divisions = res.divisions;
+    });
   }
   onSubmit(form: NgForm) {
     const searchFilter: SearchFilter = {

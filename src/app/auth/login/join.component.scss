@@ -7,13 +7,13 @@ $text-color: #afafaf;
     color: $text-color;
     max-width: 600px;
     min-width: 400px;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 .field {
   width: 100%;
   position: relative;
   border-bottom: 2px dashed $text-color;
-  margin: 4rem auto 1rem;
+  margin: 2rem auto 1rem;
   transition: 500ms;
 }
 
@@ -71,15 +71,24 @@ $text-color: #afafaf;
 .input:not(:placeholder-shown) + .label {
   transform: scale(0.8) translateY(-5rem);
 }
+select {
+  width: 100%;
+  border-radius: 0;
+  background-color: transparent;
+  color: #fff;
+}
+.select-item {
+  color: #000;
+  background-color: transparent;
+}
 .strength {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5px;
   height: 20px;
   width: 100%;
 }
 .bar {
-  margin-right: 5px;
-  height: 100%;
-  width: 25%;
   transition: box-shadow 500ms;
   box-shadow: inset 0px 20px #1f1f1f;
 }
@@ -93,10 +102,7 @@ $text-color: #afafaf;
   background: linear-gradient(to right, orangered, yellow);
 }
 .bar-3 {
-  background: linear-gradient(to right, yellow, yellowgreen);
-}
-.bar-4 {
-  background: linear-gradient(to right, yellowgreen, green);
+  background: linear-gradient(to right, yellow, green);
 }
 .toggle-password {
   position: absolute;
@@ -105,9 +111,30 @@ $text-color: #afafaf;
   right: 0.25rem;
   bottom: 0.5rem;
 }
+.error-text {
+  color: red;
+  font-size: 1.3rem;
+  max-width: 400px;
+}
+.error-text > * {
+  text-align: center;
+}
+button {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 5s ease infinite;
+  color: #fff;
+  margin: 5px 0;
+  width: 100%;
+}
 @media only screen and (max-width: 600px) {
   .form {
     min-width: 200px;
+  }
+  .error-text {
+    max-width: 250px;
+    font-size: 1.2rem;
+    margin: 0 auto;
   }
 
 }
