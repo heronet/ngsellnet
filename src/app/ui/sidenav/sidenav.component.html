@@ -2,6 +2,7 @@
     <div class="content" [class]="showSidebar ? 'content-animate' : ''"  [style]="showSidebar ? '': 'position: fixed'">
         <a class="link"  *ngIf="!isAuthenticated" (click)="onHideMe()" routerLink="/login" >Login</a>
         <a class="link"  *ngIf="!isAuthenticated" (click)="onHideMe()" routerLink="/register" >Signup</a>
+        <a class="link"  *ngIf="isAuthenticated" (click)="onHideMe();" routerLink="/products/add-product">Add Product</a>
         <a class="link"  *ngIf="isAuthenticated" (click)="onHideMe(); onLogout()" >Logout</a>
         <app-products-query *ngIf="showFilter"></app-products-query>
     </div>

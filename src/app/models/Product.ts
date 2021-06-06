@@ -18,4 +18,6 @@ export interface Product {
   division: string;
   price: number;
   photos: Photo[];
+  thumbnail: Photo;
+  brand: string;
 }

@@ -1,21 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
-html, body {
-    margin: 0;
-    padding: 0;
-    color: #f4f4f4;
-    font-family: 'Roboto Condensed',
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: #f4f4f4;
+  font-family: 'Roboto Condensed',
     sans-serif;
-    position: relative;
+  position: relative;
 }
+
+body {
+  height: 100%;
+}
+
 canvas {
-    height: 100vw;
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -999;
+  height: 100vw;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -999;
 }
+
 a {
   color: #fff;
   text-decoration: none;
@@ -59,6 +67,7 @@ button {
   background-color: #f4f4f4;
   outline: none;
 }
+
 button:hover {
   cursor: pointer;
 }
@@ -75,6 +84,7 @@ button:not(:disabled):active {
 button:focus {
   border-color: #666;
 }
+
 @keyframes gradient {
   0% {
     background-position: 0% 50%;

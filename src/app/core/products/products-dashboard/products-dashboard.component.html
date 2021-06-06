@@ -9,7 +9,7 @@
         </form>
         <ng-container *ngIf="products.length > 0 && !isloading">
             <div class="item" *ngFor="let product of products">
-                <img [src]="product.photos[0].imageUrl" [alt]="product.photos[0].publicId">
+                <img [src]="product.thumbnail.imageUrl ?? '/assets/placeholder.jpg'" [alt]="product.thumbnail.publicId">
                 <div class="item-data">
                     <p class="product-title">{{product.name}}</p>
                     <p>{{product.price}} TAKA</p>

@@ -1,0 +1,19 @@
+<div class="container">
+  <p style="text-align: center; margin: 1rem auto; font-size: 1.2rem;">Add Product</p>
+  <form class="form" #form="ngForm">
+    <input name="name" type="text" ngModel placeholder="Title" class="title" required>
+    <input name="price" type="number" ngModel placeholder="Price" required>
+    <select name="category" id="category" ngModel required>
+      <option value="" disabled selected>Category</option>
+      <option [value]="cat" *ngFor="let cat of categories">{{cat}}</option>
+    </select>
+    <textarea name="description" type="text" cols="4" placeholder="Describe your product..." ngModel required></textarea>
+    <input #fInput [hidden]="true" type="file" accept="image/png, image/jpg, image/jpeg" multiple (change)=" onFilesSelected($event)">
+    <button (click)="fInput.click()" [disabled]="isLoading || errorMessage">Add Photos</button>
+    <button [disabled]="isLoading || files.length === 0 || errorMessage || form.invalid" (click)="onSubmit(form)">{{isLoading ? 'Please Wail...': 'Submit'}}</button>
+  </form>
+  <p *ngIf="errorMessage" class="err">{{errorMessage}}</p>
+  <div class="preview">
+    <img [src]="image" [alt]="'Photo'" *ngFor="let image of previews">
+  </div>
+</div>

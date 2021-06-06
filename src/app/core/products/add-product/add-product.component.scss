@@ -1,0 +1,72 @@
+.container {
+  background-color: rgb(128, 128, 128, 0.3);
+  border-radius: 10px;
+  overflow-y: auto;
+  height: 90vh;
+  width: 90vw;
+  margin: 0 auto;
+  position: relative;
+  top: 2vh;
+}
+
+.container>* {
+  width: 80%;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  grid-gap: 5px;
+  margin: 0 auto;
+}
+
+.form>* {
+  margin: 0 5px;
+  flex-grow: 2;
+}
+
+.form>textarea,
+.form>.title {
+  flex-basis: 100%;
+}
+input, textarea {
+  background-color: transparent;
+  color: #fff;
+}
+input::placeholder, textarea::placeholder {
+  background-color: transparent;
+  color: #fff;
+}
+select {
+  background-color: transparent;
+  color: #fff;
+}
+select option:enabled {
+  color: #000;
+}
+button:disabled {
+  background-color: transparent;
+}
+button:enabled {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 5s ease infinite;
+  color: #fff;
+}
+
+.preview {
+  margin: 0 auto;
+}
+
+img {
+  height: 100px;
+  width: 100px;
+  margin: 5px;
+}
+.err {
+  margin: 10px auto;
+  text-align: center;
+  color: red;
+  font-size: 1.3rem;
+}

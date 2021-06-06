@@ -4,6 +4,7 @@
     <a style="flex: 1 1 auto" [class.disabled]="sidenavOpen ? true : false"></a>
     <a class="link bs" routerLink="/login" *ngIf="!isAuthenticated" [class.disabled]="sidenavOpen ? true : false">Login</a>
     <a class="link bs" routerLink="/register" *ngIf="!isAuthenticated" [class.disabled]="sidenavOpen ? true : false">Signup</a>
+    <a class="link bs" routerLink="/products/add-product" *ngIf="isAuthenticated" [class.disabled]="sidenavOpen ? true : false">Add Product</a>
     <a class="link bs" (click)="onLogout()" *ngIf="isAuthenticated" [class.disabled]="sidenavOpen ? true : false">Logout</a>
     <a class="link ss" (click)="onSidenavToggle()">More</a>
 </div>
