@@ -30,7 +30,7 @@
         <hr style="width: 100%;">
         <p>Seller: {{product.supplier.name}}</p>
         <a href="mailto:{{product.supplier.email}}">Email: {{product.supplier.email}}</a>
-        <a href="tel:{{product.supplier.phone}}">Phone: +88{{product.supplier.phone}}</a>
+        <a href="tel:{{product.supplier.phone}}">Phone: {{product.supplier.phone}}</a>
     </div>
 </div>
 <div class="container" *ngIf="isLoading || errorMessages" style="text-align: center;">
