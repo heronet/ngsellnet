@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { AuthData } from 'src/app/models/AuthData';
 import { SearchFilter } from 'src/app/models/SearchFilter';
+import { AuthService } from 'src/app/services/auth.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { UiService } from 'src/app/services/ui.service';
 import { UtilService } from 'src/app/services/util.service';
@@ -10,7 +13,7 @@ import { UtilService } from 'src/app/services/util.service';
   templateUrl: './products-query.component.html',
   styleUrls: ['./products-query.component.scss']
 })
-export class ProductsQueryComponent implements OnInit {
+export class ProductsQueryComponent implements OnInit, OnDestroy {
   categories = [
     "Any",
     "Phones",
@@ -30,13 +33,26 @@ export class ProductsQueryComponent implements OnInit {
   ];
   cities = [];
   divisions = [];
-
-  constructor(private productsService: ProductsService, private uiService: UiService, private utilService: UtilService) { }
+  suppliers = [
+    "All Products",
+    "My Products",
+  ];
+  authSub: Subscription;
+  authData: AuthData = null;
+  constructor(
+    private productsService: ProductsService, 
+    private uiService: UiService, 
+    private utilService: UtilService,
+    private asuthService: AuthService
+  ) { }
 
   ngOnInit(): void {
     this.utilService.getCitiesAndDivisions().subscribe(res => {
       this.cities = res.cities;
       this.divisions = res.divisions;
+    });
+    this.authSub = this.asuthService.authUser$.subscribe(authData => {
+      this.authData = authData;
     });
   }
   onSubmit(form: NgForm) {
@@ -45,10 +61,13 @@ export class ProductsQueryComponent implements OnInit {
       sortParam: form.value.sort !== "None" ? form.value.sort ?? null : null,
       city: form.value.city !== "Any" ? form.value.city ?? null : null,
       division: form.value.division !== "Any" ? form.value.division ?? null : null,
-      name: null
+      name: null,
+      sellerId: form.value.supplier === "My Products" ? this.authData.id : null
     }
     this.productsService.updateFilter(searchFilter);
     this.uiService.setSidenavVisibility(false);
   }
-
+  ngOnDestroy() {
+    this.authSub.unsubscribe();
+  }
 }

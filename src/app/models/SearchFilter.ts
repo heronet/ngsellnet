@@ -6,4 +6,5 @@ export interface SearchFilter {
     city: string;
     pageSize?: number;
     pageNumber?: number;
+    sellerId?: string;
 }

@@ -40,6 +40,7 @@ export class ProductsDashboardComponent implements OnInit, OnDestroy {
       this.filter.division = filter.division;
       this.filter.sortParam = filter.sortParam;
       this.filter.name = this.searchParam.trim();
+      this.filter.sellerId = filter.sellerId;
       this.getProducts();
     })
   }

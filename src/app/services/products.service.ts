@@ -20,7 +20,7 @@ export class ProductsService {
   }
   getProducts(filter: SearchFilter) {
     return this.http.get<{data: Product[], size: number}>(
-      `${this.BASE_URL}/products/all?pageSize=${filter.pageSize}&pageNumber=${filter.pageNumber}&name=${filter.name ?? ''}&sortParam=${filter.sortParam ?? ''}&division=${filter.division ?? ''}&city=${filter.city ?? ''}&category=${filter.category ?? ''}`
+      `${this.BASE_URL}/products/all?pageSize=${filter.pageSize}&pageNumber=${filter.pageNumber}&name=${filter.name ?? ''}&sortParam=${filter.sortParam ?? ''}&division=${filter.division ?? ''}&city=${filter.city ?? ''}&category=${filter.category ?? ''}&sellerId=${filter.sellerId ?? ''}`
     );
   }
   getProduct(id: string) {
@@ -28,5 +28,8 @@ export class ProductsService {
   }
   addProduct(formData: FormData) {
     return this.http.post(`${this.BASE_URL}/products`, formData);
+  }
+  deleteProduct(id: string) {
+    return this.http.delete(`${this.BASE_URL}/products/${id}`);
   }
 }

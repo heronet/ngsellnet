@@ -1,5 +1,12 @@
 <div class="container" *ngIf="product && !isLoading">
-    <p class="title">{{product.name}}</p>
+    <div class="title">
+        <span>{{product.name}}</span>
+        <span style="flex: 1 1 auto"></span>
+        <div *ngIf="canDelete">
+            <button>Edit</button>
+            <button (click)="deleteProduct()" class="delete-btn">Delete</button>
+        </div>
+    </div>
     <p>{{product.price}} TK</p>
     <p>Published at {{product.createdAt | date: 'medium'}}</p>
     <div class="gallery">

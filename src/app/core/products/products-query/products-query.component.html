@@ -18,6 +18,9 @@
             <option value="" disabled selected>City</option>
             <option [value]="city" *ngFor="let city of cities">{{city}}</option>
         </select>
+        <select name="supplier" id="supplier" [ngModel]="suppliers[0]" *ngIf="authData">
+            <option [value]="sup" *ngFor="let sup of suppliers">{{sup}}</option>
+        </select>
         <button type="submit" [disabled]="f.invalid">Filter</button>
     </form>
 </div>
