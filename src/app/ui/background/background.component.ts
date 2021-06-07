@@ -108,11 +108,7 @@ export class BackgroundComponent implements OnInit {
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.container.nativeElement.appendChild(this.renderer.domElement);
-    const params = {
-      texture: true
-    };
     this.container.nativeElement.style.touchAction = 'none';
-    this.container.nativeElement.addEventListener('pointermove', this.onPointerMove);
     window.addEventListener('resize', () => this.onWindowResize());
   }
   onWindowResize() {
@@ -122,24 +118,16 @@ export class BackgroundComponent implements OnInit {
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
   }
-  onPointerMove(event) {
-    if (event.isPrimary === false) return;
-    this.mouseX = event.clientX - this.windowHalfX;
-    this.mouseY = event.clientY - this.windowHalfY;
-  }
   animate() {
     requestAnimationFrame(() => this.animate());
     this.render();
   }
   render() {
     const time = Date.now() * 0.00005;
-    this.camera.position.x += (this.mouseX - this.camera.position.x) * 0.05;
-    this.camera.position.y += (-this.mouseY - this.camera.position.y) * 0.05;
-    this.camera.lookAt(this.scene.position);
     for (let i = 0; i < this.scene.children.length; i++) {
       const object = this.scene.children[i];
       if (object instanceof Points) {
-        object.rotation.y = time * (i < 4 ? i + 1 : -(i + 1));
+        object.rotation.z = time * (i < 4 ? i + 1 : -(i + 1));
       }
     }
     for (let i = 0; i < this.materials.length; i++) {
