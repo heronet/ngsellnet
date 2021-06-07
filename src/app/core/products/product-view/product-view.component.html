@@ -1,0 +1,34 @@
+<div class="container" *ngIf="product && !isLoading">
+    <p class="title">{{product.name}}</p>
+    <p>{{product.price}} TK</p>
+    <p>Published at {{product.createdAt | date: 'medium'}}</p>
+    <div class="gallery">
+        <img [src]="selectedPhoto.imageUrl" alt="" class="main-image">
+        <div class="list">
+            <img (click)="selectedPhoto = photo" 
+            *ngFor="let photo of product.photos" 
+            [src]="photo.imageUrl" 
+            [alt]="photo.publicId"
+            [style]="selectedPhoto !== photo ? 'filter: grayscale(100%);': ''"
+            >
+        </div>
+    </div>
+    <div class="description">
+        <span>Description</span>
+        <hr style="width: 100%;">
+        <p>{{product.description}}</p>
+    </div>
+    <div class="contact">
+        <span>Contact</span>
+        <hr style="width: 100%;">
+        <p>Seller: {{product.supplier.name}}</p>
+        <a href="mailto:{{product.supplier.email}}">Email: {{product.supplier.email}}</a>
+        <a href="tel:{{product.supplier.phone}}">Phone: +88{{product.supplier.phone}}</a>
+    </div>
+</div>
+<div class="container" *ngIf="isLoading || errorMessages" style="text-align: center;">
+    <p *ngIf="isLoading">Loading...</p>
+    <ng-container *ngIf="errorMessages">
+        <p *ngFor="let err of errorMessages">{{err}}</p>
+    </ng-container>
+</div>

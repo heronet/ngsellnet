@@ -30,7 +30,10 @@ export class AddProductComponent implements OnInit {
   }
   onFilesSelected(event: any) {
     const files: FileList = event.target.files
-    if(files.length > 5) {
+    // The next two lines prevent user from selecting new images again. Which may result in more than 5 images
+    this.files = [];
+    this.previews = [];
+    if(files.length > 5 || this.previews.length > 5) {
       this.errorMessage = "You can only add up to 5 photos";
       this.files = [];
       this.previews = [];
@@ -69,6 +72,7 @@ export class AddProductComponent implements OnInit {
       this.router.navigateByUrl('/products');
     }, err => {
       this.isLoading = false;
+      this.errorMessage = err.error;
     }) 
   }
 

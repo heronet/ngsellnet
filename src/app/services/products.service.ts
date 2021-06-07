@@ -23,6 +23,9 @@ export class ProductsService {
       `${this.BASE_URL}/products/all?pageSize=${filter.pageSize}&pageNumber=${filter.pageNumber}&name=${filter.name ?? ''}&sortParam=${filter.sortParam ?? ''}&division=${filter.division ?? ''}&city=${filter.city ?? ''}&category=${filter.category ?? ''}`
     );
   }
+  getProduct(id: string) {
+    return this.http.get<Product>(`${this.BASE_URL}/products/${id}`);
+  }
   addProduct(formData: FormData) {
     return this.http.post(`${this.BASE_URL}/products`, formData);
   }

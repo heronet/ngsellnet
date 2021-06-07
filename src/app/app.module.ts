@@ -14,6 +14,7 @@ import { ProductsQueryComponent } from './core/products/products-query/products-
 import { SidenavComponent } from './ui/sidenav/sidenav.component';
 import { TokenInterceptor } from './utils/token.interceptor';
 import { AddProductComponent } from './core/products/add-product/add-product.component';
+import { ProductViewComponent } from './core/products/product-view/product-view.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AddProductComponent } from './core/products/add-product/add-product.com
     ProductsQueryComponent,
     SidenavComponent,
     AddProductComponent,
+    ProductViewComponent,
   ],
   imports: [
     BrowserModule,
