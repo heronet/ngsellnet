@@ -4,6 +4,7 @@
     <form class="form" #f="ngForm" (ngSubmit)="onSubmit(f)">
         <select name="category" id="category" ngModel>
             <option value="" disabled selected>Category</option>
+            <option value="Any">Any</option>
             <option [value]="cat" *ngFor="let cat of categories">{{cat}}</option>
         </select>
         <select name="sort" id="sort" ngModel>
@@ -12,10 +13,12 @@
         </select>
         <select name="division" id="division" ngModel>
             <option value="" disabled selected>Divisions</option>
+            <option value="Any">Any</option>
             <option [value]="division" *ngFor="let division of divisions">{{division}}</option>
         </select>
         <select name="city" id="city" ngModel>
             <option value="" disabled selected>City</option>
+            <option value="Any">Any</option>
             <option [value]="city" *ngFor="let city of cities">{{city}}</option>
         </select>
         <select name="supplier" id="supplier" [ngModel]="suppliers[0]" *ngIf="authData">
