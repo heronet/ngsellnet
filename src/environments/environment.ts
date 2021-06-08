@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  // BASE_URL: "https://localhost:5001/api"
-  BASE_URL: 'https://sellnetx-ngmbdouzbq-uc.a.run.app/api'
+  BASE_URL: "https://localhost:5001/api"
 };
 
 /*
