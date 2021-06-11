@@ -11,7 +11,7 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class ProductsDashboardComponent implements OnInit, OnDestroy {
   // UI
-  isloading = false;
+  isLoading = false;
   errorMessage: string = null;
   pageSize = 10;
   pageNumber = 1;
@@ -45,15 +45,15 @@ export class ProductsDashboardComponent implements OnInit, OnDestroy {
     })
   }
   getProducts() {
-    this.isloading  = true;
+    this.isLoading  = true;
     setTimeout(() => {
       this.productsService.getProducts(this.filter).subscribe((response) => {
       this.products = response.data;
       this.totalItems = response.size;
-      this.isloading = false;
+      this.isLoading = false;
       this.errorMessage = null;
     }, error => {
-      this.isloading = false;
+      this.isLoading = false;
       this.errorMessage = "An error occured";
     });
     }, 1000) 

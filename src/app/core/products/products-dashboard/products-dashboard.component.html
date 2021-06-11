@@ -7,7 +7,7 @@
             <input type="text" name="name" id="name" [(ngModel)]="searchParam" placeholder="What are you looking for?">
             <button type="submit">Search</button>
         </form>
-        <ng-container *ngIf="products.length > 0 && !isloading">
+        <ng-container *ngIf="products.length > 0 && !isLoading">
             <div class="item" *ngFor="let product of products" [routerLink]="['/products', product.id]">
                 <img [src]="product.thumbnail.imageUrl ?? '/assets/placeholder.jpg'" [alt]="product.thumbnail.publicId">
                 <div class="item-data">
@@ -18,8 +18,8 @@
                 </div>
             </div>
         </ng-container>
-        <p *ngIf="isloading" class="loading">Loading...</p>
-        <p *ngIf="products.length === 0 && !isloading" class="loading">Oops... Looks like there are no products</p>
+        <p *ngIf="isLoading" class="loading">Loading...</p>
+        <p *ngIf="products.length === 0 && !isLoading" style="text-align: center;">Oops... Looks like there are no products</p>
     </div>
     <div class="bottom-bar">
         <span>Items {{products.length > 0 ? (pageNumber -1) * pageSize + 1 : 0}} to {{(pageSize * pageNumber) > totalItems ? totalItems : (pageSize * pageNumber)}} of {{totalItems}}</span>

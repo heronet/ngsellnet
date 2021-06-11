@@ -34,7 +34,7 @@
     </div>
 </div>
 <div class="container" *ngIf="isLoading || errorMessages" style="text-align: center;">
-    <p *ngIf="isLoading">Loading...</p>
+    <p *ngIf="isLoading" class="loading">Loading...</p>
     <ng-container *ngIf="errorMessages">
         <p *ngFor="let err of errorMessages">{{err}}</p>
     </ng-container>
