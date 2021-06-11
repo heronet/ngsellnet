@@ -84,7 +84,6 @@ button:not(:disabled):active {
 button:focus {
   border-color: #666;
 }
-
 .loading {
   margin: 0 auto;
   text-align: center;
@@ -99,9 +98,22 @@ button:focus {
     #465298 20px
   );
   background-size: 400% 400%;
-  animation: gradient 5s linear infinite;
+  animation: loading 5s linear infinite;
 }
 @keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes loading {
   0% {
     background-position: 100% 50%;
   }
