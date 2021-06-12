@@ -46,14 +46,16 @@ export class ProductViewComponent implements OnInit, OnDestroy {
           this.canDelete = true;
     }, err => {
       if(err.error instanceof Object) {
-        const errors = Object.values(err.error.errors)
-        errors.forEach((err: []) => {
-          err.forEach(error => {
-            this.errorMessages.push(error);
-          })
-        });
+        if(err.error.errors) {
+          const errors = Object.values(err.error.errors)
+          errors.forEach((err: []) => {
+            err.forEach(error => {
+              this.errorMessages.push(error);
+            })
+          });
+        }
       }
-      this.isLoading = false;
+      // this.isLoading = false;
     });
   }
   deleteProduct() {

@@ -41,13 +41,13 @@ export class ProductsDashboardComponent implements OnInit, OnDestroy {
       this.filter.sortParam = filter.sortParam;
       this.filter.name = this.searchParam.trim();
       this.filter.sellerId = filter.sellerId;
+      this.filter.pageNumber = this.pageNumber = 1; // Reset the pageNumber on filter.
       this.getProducts();
     })
   }
   getProducts() {
     this.isLoading  = true;
-    setTimeout(() => {
-      this.productsService.getProducts(this.filter).subscribe((response) => {
+    this.productsService.getProducts(this.filter).subscribe((response) => {
       this.products = response.data;
       this.totalItems = response.size;
       this.isLoading = false;
@@ -56,10 +56,10 @@ export class ProductsDashboardComponent implements OnInit, OnDestroy {
       this.isLoading = false;
       this.errorMessage = "An error occured";
     });
-    }, 1000) 
   }
   onSearch() {
     this.filter.name = this.searchParam;
+    this.filter.pageNumber = this.pageNumber = 1; // Reset the pageNumber on Search.
     this.getProducts();
   }
   onChangePage(dir: string) {
